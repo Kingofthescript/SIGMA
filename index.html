@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Hala Text</title>
+    <style>
+        /* Rainbow Gradient Background */
+        body {
+            background: linear-gradient(270deg, #ff4b5c, #ffad05, #51c4d3, #9f78ff, #f05a8c);
+            background-size: 400% 400%;
+            animation: rainbowBackground 15s infinite;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        @keyframes rainbowBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hala Text Styling */
+        .hala-text {
+            position: absolute;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            animation: moveAround 10s infinite ease-in-out, colorCycle 3s infinite;
+            transform-origin: center;
+            will-change: transform, color, font-size;
+        }
+
+        /* Keyframes for Animations */
+        @keyframes colorCycle {
+            0% { color: #ff4b5c; }
+            25% { color: #ffad05; }
+            50% { color: #51c4d3; }
+            75% { color: #9f78ff; }
+            100% { color: #f05a8c; }
+        }
+
+        @keyframes moveAround {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            20% { transform: translate(50vw, -30vh) rotate(90deg) scale(1.2); }
+            40% { transform: translate(-40vw, 50vh) rotate(180deg) scale(0.8); }
+            60% { transform: translate(30vw, -50vh) rotate(270deg) scale(1.4); }
+            80% { transform: translate(-50vw, 40vh) rotate(360deg) scale(1); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        /* Unique Styles for Each Text */
+        .hala-text:nth-child(odd) { animation-duration: 8s; }
+        .hala-text:nth-child(even) { animation-duration: 12s; }
+        .hala-text:nth-child(3n) { font-family: 'Comic Sans MS', cursive; }
+        .hala-text:nth-child(4n) { font-family: 'Georgia', serif; }
+        .hala-text:nth-child(5n) { font-family: 'Courier New', monospace; }
+    </style>
+</head>
+<body>
+
+<script>
+    // Function to create animated "Hala" text
+    function createCrazyText() {
+        const emojis = ["🐵", "👋", "🎉", "🤓", "🔥", "🚀", "💥", "🌈", "✨", "💃", "🕺", "🥳"];
+        for (let i = 0; i < 20; i++) {
+            const hala = document.createElement('div');
+            hala.classList.add('hala-text');
+            hala.innerText = `Hala ${emojis[Math.floor(Math.random() * emojis.length)]}`;
+
+            // Random start position on the screen
+            hala.style.top = Math.random() * 100 + 'vh';
+            hala.style.left = Math.random() * 100 + 'vw';
+
+            document.body.appendChild(hala);
+        }
+    }
+
+    // Initialize the animated text
+    createCrazyText();
+</script>
+
+</body>
+</html>
